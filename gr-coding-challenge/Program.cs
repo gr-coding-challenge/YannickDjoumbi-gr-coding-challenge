@@ -70,16 +70,10 @@ class Program
           ""timestamp"": ""0333499"",
           ""comments"": """"
         }
-
         ]";
 
         //Deserialize the json data to a list
         var listObj = JsonConvert.DeserializeObject<List<Session>>(data);
-
-        //Define objects to be used 
-        var sessionObj = new SessionSummary();
-        var session1 = new Session();
-        var session2 = new Session();
 
         //find duplicates and define the sessions
         var duplicates = listObj.GroupBy(x => x.Id).Where(y => y.Count() > 1).SelectMany(session => session).ToList();
